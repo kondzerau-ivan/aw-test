@@ -1,27 +1,53 @@
 import { useState } from "react";
 
 export default function InputField(props) {
-  const {addNote = Function.prototype} = props;
+  const { addNote = Function.prototype } = props;
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
+  const [valid, setValid] = useState(true);
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
-  }
+    if (value.length <= 300) {
+      setValid(true);
+    } else {
+      setValid(false);
+    }
+  };
 
   const handleEnterKeyDown = (e) => {
-    if(e.code === 'Enter') {
+    if (e.code === "Enter") {
       if (value.length <= 300) {
-        addNote(value)
-        setValue('');
+        addNote(value);
+        setValid(true);
+        setValue("");
       } else {
-        alert("Note text should be less 300 symbols!");
+        setValid(false);
       }
     }
-  }
+  };
 
-  return <div className="input-field field">
-    <label className="field__label" htmlFor="notice">Add note...</label>
-    <input className="field__input" id="notice" type="text" onChange={handleInputChange} value={value} onKeyDown={handleEnterKeyDown} />
-  </div>
+  return (
+    <div className="input-field field">
+      <label className="field__label" htmlFor="notice">
+        Add note...
+      </label>
+      <input
+        className={
+          valid ? "field__input" : "field__input field__input--novalid"
+        }
+        id="notice"
+        type="text"
+        onChange={handleInputChange}
+        value={value}
+        onKeyDown={handleEnterKeyDown}
+      />
+      {!valid && (
+        <p className="field__message">
+          {" "}
+          You can use only short notes -- under 300 symbols!{" "}
+        </p>
+      )}
+    </div>
+  );
 }
