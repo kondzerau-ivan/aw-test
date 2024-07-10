@@ -16,7 +16,8 @@ export default function InputField(props) {
   };
 
   const handleEnterKeyDown = (e) => {
-    if (e.code === "Enter") {
+    console.log(e);
+    if (e.key === "Enter") {
       if (value.length <= 300) {
         addNote(value);
         setValid(true);
