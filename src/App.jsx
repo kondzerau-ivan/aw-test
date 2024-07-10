@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NotesList from "./components/NotesList";
 import InputField from "./components/InputField";
 
@@ -12,6 +12,20 @@ function App() {
     infoDate: '2 Nov 2025',
     infoTime: '16:20'
   }]);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+        
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   const addNote = note => {
     setNotes([
