@@ -10,7 +10,7 @@ function App() {
   const getCurrentTime = () =>  new Date().toLocaleTimeString('en-GB', { minute: '2-digit', hour: '2-digit' });
 
   useEffect(() => {
-    if(JSON.parse(temp).length) {
+    if(temp && JSON.parse(temp).length) {
       setNotes(JSON.parse(temp))
     } else {
       fetch(API_URL)
