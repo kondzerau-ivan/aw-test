@@ -1,5 +1,5 @@
 export default function NoticeItem({note, removeNote} = props) {
-  const {id, text, infoImgSrc, infoTemperature, infoDate, infoTime} = note;
+  const {id, text, infoImgSrc, infoImgAlt, infoTemperature, infoDate, infoTime} = note;
 
 
   return (
@@ -8,7 +8,7 @@ export default function NoticeItem({note, removeNote} = props) {
         {text}
       </p>
       <div className="item__info info">
-        <img src={infoImgSrc} alt="Wether icon." />
+        <img src={infoImgSrc} width="50" height="50" alt={infoImgAlt} />
         <p className="info__temperature">{infoTemperature}</p>
         <p className="info__date">{infoDate}</p>
         <p className="info__time">{infoTime}</p>
