@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNotes } from "../contexts/NotesContext";
 
-export default function InputField(props) {
-  const { addNote = Function.prototype } = props;
+export default function InputField() {
+  const { addNote } = useNotes();
 
   const [value, setValue] = useState("");
   const [valid, setValid] = useState(true);

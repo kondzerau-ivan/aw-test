@@ -1,4 +1,6 @@
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
+const getCurrentDate = () => new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+const getCurrentTime = () => new Date().toLocaleTimeString('en-GB', { minute: '2-digit', hour: '2-digit' });
 let API_URL = '';
 
 if (navigator.geolocation) {
@@ -12,5 +14,7 @@ if (navigator.geolocation) {
 }
 
 export {
-  API_URL
+  API_URL,
+  getCurrentDate,
+  getCurrentTime
 }

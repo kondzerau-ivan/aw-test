@@ -1,6 +1,7 @@
-export default function NoticeItem({note, removeNote} = props) {
-  const {id, text, infoImgSrc, infoImgAlt, infoTemperature, infoDate, infoTime} = note;
+import { useNotes } from "../contexts/NotesContext";
 
+export default function NoticeItem({note: {id, text, infoImgSrc, infoImgAlt, infoTemperature, infoDate, infoTime}}) {
+  const {removeNote} = useNotes();
 
   return (
     <li className="notice__item item">
